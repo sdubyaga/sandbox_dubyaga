@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "types": ["node","@playwright/test"],
+    "paths" : {
+      "@api/*": ["./api/*"],
+      "@api.fixtures/*": ["./api.fixtures/*"],
+      "@pages/*": ["./pages/*"],
+      "@tests/*": ["./tests/*"],
+      "@constants/*": ["./constants/*"],
+      "@utils/*": ["./utils/*"],
+      "@test-data/*": ["./test-data/*"],
+      "@elements/*": ["./elements/*"],
+      "@helpers/*": ["./helpers/*"],
+      "@fixtures/*": ["./fixtures/*"],
+      "@userFactory/*": ["./userFactory/*"],
+    }
+  }
+}
+
