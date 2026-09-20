@@ -3,7 +3,7 @@ import { createTestUser } from '@utils/userFactory';
 
 test.describe.configure({ mode: 'serial' });
 
-test.describe('Create user via API -> Login -> Delete user', () => {
+test.describe('@smoke Create user via API -> Login -> Delete user', () => {
     const user = createTestUser();
     let createdUser: { userID: string };
     let token: string;
@@ -13,12 +13,12 @@ test.describe('Create user via API -> Login -> Delete user', () => {
         token = await userApi.generateToken(user);
     });
 
-    test('Login', async ({ login }) => {
+    test('@smoke Login', async ({ login }) => {
         await login.loginAs(user);
         await login.checkProfilePageUser(user);
     });
 
-    test('Delete user', async ({ login }) => {
+    test('@smoke Delete user', async ({ login }) => {
         await login.loginAs(user);
         await login.deleteAccountAndConfirm();
     });

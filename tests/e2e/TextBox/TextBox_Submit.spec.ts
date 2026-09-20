@@ -1,7 +1,7 @@
 import { test } from "@fixtures/page.fixture";
 import { User } from '@test-data/users';
 
-test('TextBox happy path workflow', async ({textBox}) =>{
+test('@regression TextBox happy path workflow', async ({textBox}) =>{
    
     await textBox.open();
     await textBox.setFullName(User.TestUser.FullName);

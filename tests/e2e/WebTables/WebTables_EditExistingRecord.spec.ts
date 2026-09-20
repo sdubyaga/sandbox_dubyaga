@@ -1,7 +1,7 @@
 import { test } from "@fixtures/page.fixture";
 import { User } from '@test-data/users'; 
 
-test('Edit existing record in the Web Table', async ({webTable}) =>{
+test('@smoke Edit existing record in the Web Table', async ({webTable}) =>{
 
     await webTable.open();
     await webTable.clickEditButtonOnRandomRow();

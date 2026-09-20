@@ -4,6 +4,7 @@ import { HomePage } from '@pages/home-page';
 import { TextBoxPage } from '@pages/text-box-page';
 import { TOC } from '@pages/toc';
 import { WebTablePage } from '@pages/web-table-page';
+import { ButtonsPage } from '@pages/buttons-page';
 
 import { apiTest } from './api.fixture';
 import { createPageFixture } from './create-page.fixture';
@@ -15,6 +16,7 @@ type Pages = {
     toc: TOC;
     webTable: WebTablePage;
     practiceForm: PracticeForm;
+    buttons: ButtonsPage;
 };
 
 export const test = apiTest.extend<Pages>({
@@ -24,6 +26,7 @@ export const test = apiTest.extend<Pages>({
     toc: createPageFixture((page) => new TOC(page)),
     webTable: createPageFixture((page) => new WebTablePage(page)),
     practiceForm: createPageFixture((page) => new PracticeForm(page)),
+    buttons: createPageFixture((page) => new ButtonsPage(page)),
 });
 
 export { expect } from '@playwright/test';
