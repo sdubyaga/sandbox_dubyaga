@@ -1,0 +1,17 @@
+{
+  "servers": {
+    "playwright": {
+      "command": "npx.cmd",
+      "args": [
+        "--no-install",
+        "@playwright/mcp",
+        "--browser",
+        "chromium"
+      ]
+    },
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/"
+    }
+  }
+}

@@ -19,8 +19,8 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
-  /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
+  /* Configure the worker count from CI while keeping local defaults. */
+  workers: process.env.WORKERS ? Number(process.env.WORKERS) : (process.env.CI ? 1 : undefined),
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
     ['html'],
@@ -30,7 +30,7 @@ export default defineConfig({
   
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
-    baseURL: 'https://demoqa.com',
+    baseURL: process.env.BASE_URL || 'https://demoqa.com',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
     trace: 'retain-on-failure',

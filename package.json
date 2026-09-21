@@ -3,12 +3,22 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test:smoke": "playwright test --grep @smoke",
+    "test:regression": "playwright test --grep @regression",
+    "test:ui": "playwright test --grep @ui",
+    "test:ai": "playwright test --grep @AI",
+    "test:all": "playwright test",
+    "playwright:install-skills": "playwright-cli install --skills",
+    "playwright:init-agents": "playwright init-agents --loop=copilot --prompts"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
+    "@playwright/cli": "^0.1.21",
+    "@playwright/mcp": "^0.0.82",
     "@playwright/test": "^1.61.1",
     "@types/node": "^26.1.0"
   }

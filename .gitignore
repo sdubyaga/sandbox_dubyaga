@@ -9,3 +9,6 @@ node_modules/
 /artifacts/screenshots/
 # Playwright CLI output (may contain credentials)
 .playwright-cli/
+
+# Auto-generated Playwright CLI skill
+.claude/skills/playwright-cli/
