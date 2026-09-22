@@ -2,7 +2,7 @@ import { StudentUser } from "@pages/practice-form";
 import { test } from "@fixtures/page.fixture";
 import { User } from "@test-data/users";
 
-test('Fill out Student Registration Form', async ({practiceForm}) => {
+test('@smoke Fill out Student Registration Form', async ({practiceForm}) => {
     let testUser: StudentUser;
     testUser = {
             firstName:  User.TestUser.FirstName,
