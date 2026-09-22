@@ -16,16 +16,33 @@ on:
           - "@AI"
       workers:
         description: 'Number of parallel workers'
+        type: choice
         required: true
         default: '1'
+        options:
+          - '1'
+          - '2'
+          - '4'
+          - '8'
       base_url:
         description: 'Base URL for tests'
+        type: string
         required: true
         default: 'https://demoqa.com'
       retention_days:
         description: 'Days to retain the Playwright report'
+        type: number
         required: true
         default: '30'
+      browser:
+        description: 'Browser project to run'
+        type: choice
+        required: true
+        default: 'chromium'
+        options:
+          - chromium
+          - firefox
+          - webkit
   schedule:
       - cron: '0 6 * * *'
   push:
@@ -36,10 +53,13 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     env:
       BASE_URL: ${{ inputs.base_url || 'https://demoqa.com' }}
       TEST_TAG: ${{ inputs.tag || 'all' }}
       WORKERS: ${{ inputs.workers || '1' }}
+      RETENTION_DAYS: ${{ inputs.retention_days || '30' }}
+      BROWSER: ${{ inputs.browser || 'chromium' }}
 
     steps:
     - name: Checkout repository
@@ -56,12 +76,33 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
 
+    - name: Validate workflow inputs
+      shell: bash
+      run: |
+        node <<'NODE'
+        const allowedWorkers = new Set(['1', '2', '4', '8']);
+        const baseUrl = new URL(process.env.BASE_URL);
+        const retentionDays = Number(process.env.RETENTION_DAYS);
+
+        if (!['http:', 'https:'].includes(baseUrl.protocol) || !baseUrl.hostname) {
+          throw new Error('BASE_URL must be a valid HTTP or HTTPS URL.');
+        }
+
+        if (!allowedWorkers.has(process.env.WORKERS)) {
+          throw new Error('WORKERS must be one of: 1, 2, 4, 8.');
+        }
+
+        if (!Number.isInteger(retentionDays) || retentionDays < 1 || retentionDays > 90) {
+          throw new Error('RETENTION_DAYS must be an integer from 1 to 90.');
+        }
+        NODE
+
     - name: Run Playwright Tests
       run: |
         if [ "$TEST_TAG" = "all" ]; then
-          npx playwright test --workers="$WORKERS"
+          npx playwright test --project="$BROWSER" --workers="$WORKERS"
         else
-          npx playwright test --grep="$TEST_TAG" --workers="$WORKERS"
+          npx playwright test --grep="$TEST_TAG" --project="$BROWSER" --workers="$WORKERS"
         fi
 
     - name: Upload Playwright Report
