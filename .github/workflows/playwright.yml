@@ -13,6 +13,7 @@ on:
           - "@smoke"
           - "@regression"
           - "@ui"
+          - "@api"
           - "@AI"
       workers:
         description: 'Number of parallel workers'
@@ -99,7 +100,10 @@ jobs:
 
     - name: Run Playwright Tests
       run: |
-        if [ "$TEST_TAG" = "all" ]; then
+        if [ "$TEST_TAG" = "@api" ]; then
+          npm run test:api:junior-stage-1
+        elif [ "$TEST_TAG" = "all" ]; then
+          npm run test:api:junior-stage-1
           npx playwright test --project="$BROWSER" --workers="$WORKERS"
         else
           npx playwright test --grep="$TEST_TAG" --project="$BROWSER" --workers="$WORKERS"
