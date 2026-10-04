@@ -103,9 +103,11 @@ jobs:
         if [ "$TEST_TAG" = "@api" ]; then
           npm run test:api:junior-stage-1
           npm run test:api:junior-stage-2
+          npm run test:api:junior-stage-3
         elif [ "$TEST_TAG" = "all" ]; then
           npm run test:api:junior-stage-1
           npm run test:api:junior-stage-2
+          npm run test:api:junior-stage-3
           npx playwright test --project="$BROWSER" --workers="$WORKERS"
         else
           npx playwright test --grep="$TEST_TAG" --project="$BROWSER" --workers="$WORKERS"
