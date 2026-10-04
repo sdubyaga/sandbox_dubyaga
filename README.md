@@ -12,3 +12,7 @@ npm run test:api:junior-stage-1
 ```
 
 The tests are in `tests/api/junior-stage-1/httpbin.spec.ts`. Their isolated settings, including the API base URL, are in `playwright.api.config.ts`; the existing `playwright.config.ts` remains responsible for UI tests.
+
+## Junior API Stage 2
+
+The Stage 2 API tests use Reqres for data-driven user-list checks, CRUD responses, and a missing-password validation case.

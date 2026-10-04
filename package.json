@@ -9,7 +9,8 @@
     "test:ui": "playwright test --grep @ui",
     "test:ai": "playwright test --grep @AI",
     "test:all": "playwright test",
-    "test:api:junior-stage-1": "playwright test --config=playwright.api.config.ts",
+    "test:api:junior-stage-1": "playwright test --config=playwright.api.junior-stage-1.config.ts",
+    "test:api:junior-stage-2": "playwright test --config=playwright.api.junior-stage-2.config.ts",
     "playwright:install-skills": "playwright-cli install --skills",
     "playwright:init-agents": "playwright init-agents --loop=copilot --prompts"
   },
