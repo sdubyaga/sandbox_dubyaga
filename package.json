@@ -9,6 +9,9 @@
     "test:ui": "playwright test --grep @ui",
     "test:ai": "playwright test --grep @AI",
     "test:all": "playwright test",
+    "test:api:junior-stage-1": "playwright test --config=playwright.api.junior-stage-1.config.ts",
+    "test:api:junior-stage-2": "playwright test --config=playwright.api.junior-stage-2.config.ts",
+    "test:api:junior-stage-3": "playwright test --config=playwright.api.junior-stage-3.config.ts",
     "playwright:install-skills": "playwright-cli install --skills",
     "playwright:init-agents": "playwright init-agents --loop=copilot --prompts"
   },
@@ -20,6 +23,7 @@
     "@playwright/cli": "^0.1.21",
     "@playwright/mcp": "^0.0.82",
     "@playwright/test": "^1.61.1",
-    "@types/node": "^26.1.0"
+    "@types/node": "^26.1.0",
+    "ajv": "^8.20.0"
   }
 }
